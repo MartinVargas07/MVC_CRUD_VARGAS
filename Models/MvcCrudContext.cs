@@ -11,7 +11,7 @@ public partial class MvcCrudContext : DbContext
     }
 
     public MvcCrudContext(DbContextOptions<MvcCrudContext> options)
-        : base(options)
+    : base(options)
     {
     }
 
