@@ -28,7 +28,7 @@ namespace MVC_CRUD_VARGAS.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string email, string password)
         {
-            var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == email && u.Clave == password);
+            var usuario = _context.LoginUsuarios.FirstOrDefault(u => u.Email == email && u.Clave == password);
 
             if (usuario != null)
             {
@@ -61,29 +61,25 @@ namespace MVC_CRUD_VARGAS.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(string nombre, string email, string password)
         {
-            // Verificar si el correo ya está registrado
-            if (_context.Usuarios.Any(u => u.Email == email))
+            if (_context.LoginUsuarios.Any(u => u.Email == email))
             {
                 ViewBag.ErrorMessage = "Este correo ya está registrado.";
                 return View();
             }
 
-            // Crear un nuevo usuario
-            var nuevoUsuario = new Usuario
+            var nuevoUsuario = new LoginUsuario
             {
                 Nombre = nombre,
                 Email = email,
                 Clave = password
             };
 
-            _context.Usuarios.Add(nuevoUsuario);
+            _context.LoginUsuarios.Add(nuevoUsuario);
             await _context.SaveChangesAsync();
 
-            // Después del registro, redirigir al login
             return RedirectToAction("Login", "Account");
         }
 
-        // Cerrar sesión
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
