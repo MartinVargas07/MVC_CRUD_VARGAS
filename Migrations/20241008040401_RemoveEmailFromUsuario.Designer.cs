@@ -4,6 +4,7 @@ using MVC_CRUD_VARGAS.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVC_CRUD_VARGAS.Migrations
 {
     [DbContext(typeof(MvcCrudContext))]
-    partial class MvcCrudContextModelSnapshot : ModelSnapshot
+    [Migration("20241008040401_RemoveEmailFromUsuario")]
+    partial class RemoveEmailFromUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
