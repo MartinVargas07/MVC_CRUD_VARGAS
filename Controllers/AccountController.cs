@@ -43,7 +43,8 @@ namespace MVC_CRUD_VARGAS.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
 
-                return RedirectToAction("Welcome", "Account");
+                // Redirigir al CRUD de usuarios tras iniciar sesión
+                return RedirectToAction("Index", "Usuarios");
             }
 
             ViewBag.ErrorMessage = "Correo o contraseña incorrectos";
