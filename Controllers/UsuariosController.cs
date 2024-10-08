@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_CRUD_VARGAS.Models;
+using Microsoft.AspNetCore.Authorization; // Agregar la referencia para la autorización
 
 namespace MVC_CRUD_VARGAS.Controllers
 {
+    [Authorize] // Esto protege todo el controlador
     public class UsuariosController : Controller
     {
         private readonly MvcCrudContext _context;
@@ -49,8 +51,6 @@ namespace MVC_CRUD_VARGAS.Controllers
         }
 
         // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Fecha,Clave")] Usuario usuario)
@@ -81,8 +81,6 @@ namespace MVC_CRUD_VARGAS.Controllers
         }
 
         // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Fecha,Clave")] Usuario usuario)
